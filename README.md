@@ -2,6 +2,8 @@
 Native pan &amp; pinch-zoom for images on touch devices — no libraries, no dependencies, no touching existing HTML.
 
 Built for editorial websites and blogs that want a premium mobile experience on images: users can pinch to zoom up to 6× and drag to explore the details, just like a native app — without triggering the browser's page zoom.
+
+![Demo](assets/example-image-zoom.gif)
  
 ---
  
