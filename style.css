@@ -1,0 +1,100 @@
+/* ─────────────────────────────────────────
+   MOBILE PAN/ZOOM — regole CSS automatiche
+   Il JS avvolge ogni <img data-zoomable>
+   in questa struttura. Puoi incollare
+   questo blocco <style> in qualsiasi tema.
+───────────────────────────────────────── */
+@media (pointer: coarse) {
+
+  /* L'img originale viene nascosta: il JS
+     la clona dentro .mz-viewport           */
+  img[data-zoomable] { display: none; }
+
+  .mz-wrap {
+    /*margin: 2.5rem 0;*/
+    position: relative;
+  }
+
+  .mz-viewport {
+    width: 100%;
+    overflow: hidden;
+    /*border-radius: 8px;*/
+    position: relative;
+    /*background: #fff;
+    box-shadow: 0 6px 32px rgba(14,60,110,.15);*/
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: grab;
+  }
+  .mz-viewport:active { cursor: grabbing; }
+
+  .mz-img {
+    /* dimensioni: il JS sincronizza l'altezza
+       alle proporzioni naturali dell'immagine */
+    display: block;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0; left: 0;
+    transform-origin: 0 0;
+    will-change: transform;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  .mz-badge {
+    position: absolute; top: .7rem; left: .7rem;
+    font-family: 'DM Mono', monospace; font-size: .6rem;
+    letter-spacing: .14em; color: rgba(255,255,255,.85);
+    background: rgba(14,60,110,.55);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    padding: .22rem .55rem; border-radius: 2rem;
+    pointer-events: none; z-index: 10;
+    opacity: 0; transition: opacity .3s;
+  }
+  .mz-badge.visible { opacity: 1; }
+
+  .mz-btns {
+    position: absolute; bottom: .7rem; right: .7rem;
+    display: flex; gap: .38rem; z-index: 10;
+  }
+  .mz-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.28);
+    background: rgba(14,60,110,.52);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    color: rgba(255,255,255,.92);
+    font-size: 1rem; display: grid; place-items: center;
+    cursor: pointer; font-family: system-ui;
+    -webkit-tap-highlight-color: transparent;
+    transition: background .18s;
+  }
+  .mz-btn:active { background: rgba(14,124,226,.75); }
+
+  .mz-hint {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 8; pointer-events: none;
+    transition: opacity .5s;
+    /*background: rgba(14,60,110,.08);*/
+  }
+  .mz-hint.gone { opacity: 0; pointer-events: none; }
+  .mz-hint span {
+    font-family: 'DM Mono', monospace; font-size: .58rem;
+    letter-spacing: .16em; text-transform: uppercase;
+    color: rgba(14,40,90,.65); text-align: center;
+    padding: .4rem .9rem;
+    background: rgba(255,255,255,.55);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    border-radius: 2rem;
+  }
+
+  /* Caption sotto il wrapper */
+  .mz-caption {
+    font-family: 'DM Mono', monospace; font-size: .62rem;
+    letter-spacing: .13em; text-transform: uppercase;
+    color: var(--muted, #6b8099); margin-top: .75rem;
+  }
+}
